@@ -7,10 +7,10 @@ void Worker::Start(bool& stop, std::vector<char> &list,void(*callback)(std::stri
 {
     while (!stop)
     {
-        std::this_thread::sleep_for(1s);
+        std::this_thread::sleep_for(500ms);
         while (list.size()>0)
         {
-            std::this_thread::sleep_for(1s);
+            std::this_thread::sleep_for(500ms);
             std::string message = std::to_string(list.size()) + " :: " + list.back();
             callback(message);
             _mutex.lock();

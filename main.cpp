@@ -29,7 +29,7 @@ int main()
         _mutex->lock();
         list.emplace_back(x);
         _mutex->unlock();
-        std::this_thread::sleep_for(100ms);
+        //std::this_thread::sleep_for(100ms);
     }
 
     if(t.joinable())
