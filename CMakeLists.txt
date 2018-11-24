@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(Singleton)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(QT_QMAKE_EXECUTABLE "/Users/amr/Qt5.11.2/5.11.2/clang_64/bin/qmake")
+file(GLOB SRC "*.h" "*.cpp")
+add_executable(${PROJECT_NAME} ${SRC})
