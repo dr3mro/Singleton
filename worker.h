@@ -8,7 +8,7 @@
 class Worker
 {
 public:
-    static void Start(bool &stop, std::vector<char> &list, void(*callback)(std::string));
+    static void Start(bool &stop, std::vector<char> &list, void(*callback)(std::string), std::mutex &_mutex);
 
 private:
 };

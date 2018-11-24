@@ -20,12 +20,15 @@ int main()
 
     K = Kernel::getInstance(t,stop,list);
 
+    std::mutex *_mutex = &(K->_mutex);
     char x;
     while(!stop)
     {
         std::cin >> x;
         stop = !(std::strcmp("0",&x));
+        _mutex->lock();
         list.emplace_back(x);
+        _mutex->unlock();
         std::this_thread::sleep_for(100ms);
     }
 
