@@ -3,18 +3,18 @@
 using namespace std::chrono_literals;
 
 
-void Worker::Start(bool& stop, std::vector<char> &list,void(*callback)(std::string),std::mutex& _mutex)
+void Worker::Start(bool& stop, std::queue<char> &list,void(*callback)(std::string),std::mutex& _mutex)
 {
     while (!stop)
     {
         std::this_thread::sleep_for(500ms);
-        while (list.size()>0)
+        while (!list.empty())
         {
             std::this_thread::sleep_for(500ms);
-            std::string message = std::to_string(list.size()) + " :: " + list.back();
+            std::string message = std::to_string(list.size()) + " :: " + list.front();
             callback(message);
             _mutex.lock();
-            list.pop_back();
+            list.pop();
             _mutex.unlock();
             if(stop) break;
             if(list.size()==0)

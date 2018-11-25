@@ -3,14 +3,14 @@
 
 #include <iostream>
 #include <thread>
-#include <vector>
+#include <queue>
 #include "worker.h"
 #include <mutex>
 
 class Kernel
 {
 private:
-    Kernel(std::thread &t, bool &stop, std::vector<char> &list);
+    Kernel(std::thread &t, bool &stop, std::queue<char> &list);
     ~Kernel()=default;
 
     Kernel(const Kernel&) = delete;
@@ -19,7 +19,7 @@ private:
     Kernel& operator=(Kernel&&) = delete;
 
 public:
-    static Kernel* getInstance(std::thread &t, bool &stop, std::vector<char> &list);
+    static Kernel* getInstance(std::thread &t, bool &stop, std::queue<char> &list);
     static void callback(std::string s);
     std::mutex _mutex;
 

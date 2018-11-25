@@ -1,7 +1,7 @@
 #include <iostream>
 #include "kernel.h"
 #include <thread>
-#include <vector>
+#include <queue>
 #include <chrono>
 
 
@@ -16,7 +16,7 @@ int main()
 
     std::thread t;
 
-    std::vector<char> list;
+    std::queue<char> list;
 
     K = Kernel::getInstance(t,stop,list);
 
@@ -27,7 +27,7 @@ int main()
         std::cin >> x;
         stop = !(std::strcmp("0",&x));
         _mutex->lock();
-        list.emplace_back(x);
+        list.emplace(x);
         _mutex->unlock();
         //std::this_thread::sleep_for(100ms);
     }
