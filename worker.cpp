@@ -3,7 +3,7 @@
 using namespace std::chrono_literals;
 
 
-void Worker::Start(bool& stop, std::queue<char> &list,void(*callback)(std::string),std::mutex& _mutex)
+void Worker::Start(bool& stop, std::queue<char> &list,void(*callback)(std::string))
 {
     while (!stop)
     {
@@ -12,14 +12,14 @@ void Worker::Start(bool& stop, std::queue<char> &list,void(*callback)(std::strin
         {
             std::this_thread::sleep_for(500ms);
             std::string message = std::to_string(list.size()) + " :: " + list.front();
-            callback(message);
+            (*callback)(message);
             _mutex.lock();
             list.pop();
             _mutex.unlock();
             if(stop) break;
             if(list.size()==0)
-                callback(std::string("No more Items\n"));
+                (*callback)(std::string("No more Items\n"));
         }
     }
-    callback(std::string("Exiting ..."));
+    (*callback)(std::string("Exiting ..."));
 }

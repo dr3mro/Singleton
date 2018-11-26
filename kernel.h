@@ -21,8 +21,5 @@ private:
 public:
     static Kernel* getInstance(std::thread &t, bool &stop, std::queue<char> &list);
     static void callback(std::string s);
-    std::mutex _mutex;
-
-
 };
 #endif // KERNEL_H

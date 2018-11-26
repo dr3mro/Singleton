@@ -5,10 +5,11 @@
 #include <iostream>
 #include <chrono>
 
+extern std::mutex _mutex;
 class Worker
 {
 public:
-    static void Start(bool &stop, std::queue<char> &list, void(*callback)(std::string), std::mutex &_mutex);
+    static void Start(bool &stop, std::queue<char> &list, void(*callback)(std::string));
 
 private:
 };
